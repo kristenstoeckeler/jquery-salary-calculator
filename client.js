@@ -18,9 +18,34 @@ function employeeObject(){
         jobTitle: $('#jobTitle').val(),
         annualSalary: $('#annualSalary').val()
     }
+
     console.log( employee );
     employees.push( employee );
     console.log( employees );
+
+    let $el1 = $('#row-firstName');
+    $el1.append(`<div>${employee.firstName}</div>`);
+
+    let $el2 = $('#row-lastName');
+    $el2.append(`<div>${employee.lastName}</div>`);
+
+    let $el3 = $('#row-idNumber');
+    $el3.append(`<div>${employee.idNumber}</div>`);
+
+    let $el4 = $('#row-jobTitle');
+    $el4.append(`<div>${employee.jobTitle}</div>`);
+
+    let $el5 = $('#row-annualSalary');
+    $el5.append(`<div>${employee.annualSalary}</div>`);
+
+    let $el6 = $('#row-deleteButton');
+    $el6.append(`<button>Delete</button><br></br>`) 
+
+    $('#firstName').val('');
+    $('#lastName').val('');
+    $('#idNumber').val('');
+    $('#jobTitle').val('');
+    $('#annualSalary').val('');
     calculateMonthly();
 }
 
@@ -32,16 +57,21 @@ function calculateMonthly(){
         console.log( 'in for loop' );
         annualCost = annualCost + Number(employee.annualSalary);
     }
+
     monthlyCost = annualCost / 12;
     console.log( monthlyCost );
-    // appendDOM();
-}
 
-// function appendDOM(){
-//     console.log( 'in appendDOM' );
-//     let $el1= 
-//     let $el2 =
-//     let $el3 =
-//     let $el4 =
-//     let $el5 =
-// }
+    if( monthlyCost < 200000 ){
+        console.log( ' less than 200,000');
+        let $el = $('#monthlyTotal');
+        $el.empty();
+        $el.append(`<h4>$${monthlyCost}</h4>`);
+    }else{
+        console.log( 'more than 200,000 ');
+        let $el = $('#monthlyTotal');
+        $el.empty();
+        $el.append(`<h4>$${monthlyCost}</h4>`);
+        $el.css('background-color', 'red');
+    }
+    
+}

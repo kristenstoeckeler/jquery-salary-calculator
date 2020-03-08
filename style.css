@@ -1,0 +1,11 @@
+#monthlyTotal{
+    background-color: white;
+}
+
+#alertMonthlyTotal{
+    background-color: red;
+}
+
+button {
+    margin: 0px;
+}
