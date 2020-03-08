@@ -7,6 +7,7 @@ employees = [];
 function readyNow(){
     console.log( 'JQ' );
     $('#btn-submit').on('click', employeeObject );    
+    $('#tble-entry').on('click', '.btn-delete', deleteEmployee );
 }
 
 function employeeObject(){
@@ -23,24 +24,30 @@ function employeeObject(){
     employees.push( employee );
     console.log( employees );
 
-    let $el1 = $('#row-firstName');
-    $el1.append(`<div>${employee.firstName}</div>`);
+    tableAppend();
+} 
 
-    let $el2 = $('#row-lastName');
-    $el2.append(`<div>${employee.lastName}</div>`);
+function tableAppend(){
+    let tableEntry = $('.myTable');
+    tableEntry.empty();
 
-    let $el3 = $('#row-idNumber');
-    $el3.append(`<div>${employee.idNumber}</div>`);
 
-    let $el4 = $('#row-jobTitle');
-    $el4.append(`<div>${employee.jobTitle}</div>`);
-
-    let $el5 = $('#row-annualSalary');
-    $el5.append(`<div>${employee.annualSalary}</div>`);
-
-    let $el6 = $('#row-deleteButton');
-    $el6.append(`<button>Delete</button><br></br>`) 
-
+   //originally I wasn't using a loop for this. Eric helped me with this idea. 
+    for (item of employees) {
+        console.log('in employees loop');
+        let $td = $(`
+            <tr>
+            <td>${item.firstName}</td>
+            <td>${item.lastName}</td>
+            <td>${item.idNumber}</td>
+            <td>${item.jobTitle}</td>
+            <td>${item.annualSalary}</td>
+            <td><button class="btn-delete">Delete</button></td>
+            </tr>`
+        );
+        tableEntry.append($td);
+}
+ 
     $('#firstName').val('');
     $('#lastName').val('');
     $('#idNumber').val('');
@@ -70,8 +77,12 @@ function calculateMonthly(){
         console.log( 'more than 200,000 ');
         let $el = $('#monthlyTotal');
         $el.empty();
-        $el.append(`<h4>$${monthlyCost}</h4>`);
+        $el.append(`<h4>$'${monthlyCost}</h4>`);
         $el.css('background-color', 'red');
-    }
-    
+    }   
+}
+
+function deleteEmployee(){
+    console.log( "in delete button" );
+    $(this).parent().parent().empty();
 }
