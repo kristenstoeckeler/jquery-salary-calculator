@@ -1,10 +1,17 @@
-# Project Name
+# PROJECT NAME
 
 Salary Calculator
 
 ## Description
 
-In this scenario, an employer needed to be able to input employee information and calculate total monthly costs. This application allows for this and alerts the client if total monthly costs exceed a threshold of $200,000. 
+_Duration: 7 hours_
 
+This application allows a client to input employee information into a form and calculate total monthly salary costs of all employees. It also alerts the client if total monthly costs exceed an upper limit. The limit is currently set to $200,000.  
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Built With
+
+JavaScript
+JQuery
+
+## Acknowledgement
+Thanks to [Prime Digital Academy](www.primeacademy.io).
