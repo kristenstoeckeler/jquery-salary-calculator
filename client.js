@@ -10,6 +10,7 @@ function readyNow(){
     $('#tble-entry').on('click', '.btn-delete', deleteEmployee );
 }
 
+//creating object for each employee entry and pushing to array
 function employeeObject(){
     console.log( 'in employeeObject' );
     let employee = {
@@ -27,12 +28,13 @@ function employeeObject(){
     tableAppend();
 } 
 
+//appending table entry to DOM
 function tableAppend(){
     let tableEntry = $('.myTable');
     tableEntry.empty();
 
 
-   //originally I wasn't using a loop for this. Eric helped me with this idea. 
+//originally I wasn't using a loop for this. Eric helped me with this idea. 
     for (item of employees) {
         console.log('in employees loop');
         let $td = $(`
@@ -41,13 +43,14 @@ function tableAppend(){
             <td>${item.lastName}</td>
             <td>${item.idNumber}</td>
             <td>${item.jobTitle}</td>
-            <td>${item.annualSalary}</td>
+            <td class="salaryDOM">${item.annualSalary}</td>
             <td><button class="btn-delete">Delete</button></td>
             </tr>`
         );
         tableEntry.append($td);
 }
- 
+
+//emptying input fields
     $('#firstName').val('');
     $('#lastName').val('');
     $('#idNumber').val('');
@@ -56,6 +59,7 @@ function tableAppend(){
     calculateMonthly();
 }
 
+//calculating monthly totals from inputs
 function calculateMonthly(){
     console.log( 'in calculateMonthly' );
     let annualCost = 0;
@@ -68,21 +72,34 @@ function calculateMonthly(){
     monthlyCost = annualCost / 12;
     console.log( monthlyCost );
 
-    if( monthlyCost < 200000 ){
+//differentiating between below and above threshold of monthly totals.
+//appending to DOM
+    if( monthlyCost <= 200000 ){
         console.log( ' less than 200,000');
         let $el = $('#monthlyTotal');
         $el.empty();
-        $el.append(`<h4>$${monthlyCost}</h4>`);
+        $el.append(`<h4>The total monthly cost is $${monthlyCost}</h4>`);
     }else{
         console.log( 'more than 200,000 ');
         let $el = $('#monthlyTotal');
         $el.empty();
-        $el.append(`<h4>$'${monthlyCost}</h4>`);
+        $el.append(`<h4>Alert! Monthly cost exceeds limit $${monthlyCost}</h4>`);
         $el.css('background-color', 'red');
     }   
 }
 
+// this is as far as I got trying to get my delete button to work
+
 function deleteEmployee(){
     console.log( "in delete button" );
-    $(this).parent().parent().empty();
+    let $el1 = $('.salaryDOM').text();
+    console.log( $el1 );
+    let $el2 = $(this).parent().parent();
+    employees.shift( $el2 );
+    $el2.empty();
+    
+
+
+
 }
+

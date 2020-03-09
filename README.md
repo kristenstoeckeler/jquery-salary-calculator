@@ -1,9 +1,10 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Salary Calculator
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+In this scenario, an employer needed to be able to input employee information and calculate total monthly costs. This application allows for this and alerts the client if total monthly costs exceed a threshold of $200,000. 
+
 
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
